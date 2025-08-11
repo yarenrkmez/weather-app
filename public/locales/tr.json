@@ -1,0 +1,58 @@
+{
+  "weather": {
+    "clear_sky": "Açık",
+    "partly_cloudy": "Parçalı bulutlu",
+    "cloudy": "Bulutlu",
+    "rainy": "Yağmurlu",
+    "snow": "Karlı",
+    "unknown": "Bilinmeyen",
+    "humidity": "Nem",
+    "wind": "Rüzgar",
+    "daily_forecast": "7 Günlük Tahmin",
+    "date": "Tarih",
+    "min_temp": "Min °C",
+    "max_temp": "Max °C",
+    "precipitation": "Yağış (mm)",
+    "humidity_avg": "Ortalama Nem (%)"
+  },
+  "unknown_city": "Bilinmeyen",
+  "alerts": {
+    "city_already_added": "Bu şehir zaten eklenmiş."
+  },
+  "placeholders": {
+    "enter_city_name": "Şehir adı girin"
+  },
+  "aria": {
+    "city_name": "Şehir adı"
+  },
+  "buttons": {
+    "loading": "Yükleniyor...",
+    "add": "Ekle",
+    "refresh": "Yenile",
+    "remove": "Kaldır",
+    "toggle_details": "Detayları göster/gizle",
+    "back": "Geri"
+  },
+  "errors": {
+    "city_not_found": "Şehir bulunamadı.",
+    "fetch_error": "Hava durumu verisi alınamadı.",
+    "city_suggestions_failed": "Şehir önerileri alınamadı.",
+    "location_denied": "Konum erişimi reddedildi. Lütfen tarayıcı ayarlarınızdan konum hizmetlerini etkinleştirin.",
+    "location_failed": "Konum alınamadı. Lütfen tarayıcı ayarlarınızı kontrol edin.",
+    "location_unsupported": "Bu tarayıcı geolokasyon desteği sunmuyor. Lütfen geolokasyon API'sini destekleyen modern bir tarayıcı kullanın.",
+    "location_insecure": "Geolokasyon güvenli bir bağlantı (HTTPS) gerektirir. Lütfen siteye HTTPS üzerinden erişin.",
+    "location_unavailable": "Konum kullanılamıyor. Lütfen cihazınızda konum hizmetlerinin etkin olduğundan emin olun.",
+    "location_timeout": "Konum isteği zaman aşımına uğradı. Lütfen tekrar deneyin."
+  },
+  "messages": {
+    "no_city_added": "Henüz şehir eklenmedi. Lütfen bir şehir ekleyin.",
+    "loading": "Yükleniyor..."
+  },
+  "dashboard": {
+    "title": "Hava Durumu Panosu"
+  },
+  "actions": {
+    "use_current_location": "Mevcut konumumu kullan",
+    "use_current_location_loading": "Mevcut konum kullanılıyor..."
+  }
+}

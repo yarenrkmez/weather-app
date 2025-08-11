@@ -1,0 +1,94 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Biz JS tarafında .cards kullanıyoruz; senin verdiğin .city-cards ile eşleyelim */
+.cards,
+.city-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Başlık + boş durum */
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0 0.5rem;
+  color: var(--text);
+}
+.empty {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Basit skeleton (Dashboard.tsx’de kullandık) */
+.cardSkeleton {
+  width: clamp(280px, 32vw, 420px);
+  min-height: 160px;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 12px;
+  padding: 14px;
+  background: var(--bg-color, #fff);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.skelHeader,
+.skelBody {
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.12) 37%,
+    rgba(0, 0, 0, 0.06) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+.skelHeader {
+  height: 18px;
+}
+.skelBody {
+  height: 96px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* Hata kartı */
+.cardError {
+  width: clamp(280px, 32vw, 420px);
+  border: 1px solid #f4c7c7;
+  background: #fff5f5;
+  color: #8a2525;
+  border-radius: 12px;
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+
+  button {
+    justify-self: flex-start;
+    background: #fff;
+    border: 1px solid #f0a0a0;
+    color: #8a2525;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+}

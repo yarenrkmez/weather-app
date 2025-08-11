@@ -1,0 +1,214 @@
+.cityDetails {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: var(--bg-color, #fff);
+  color: var(--text, #111827);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cityDetails button {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  transition: transform 0.06s ease, filter 0.3s ease;
+}
+.cityDetails button:hover {
+  filter: brightness(0.92);
+}
+.cityDetails button:active {
+  transform: translateY(1px);
+}
+
+.cityDetails h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.coords {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.cityDetails h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.25rem;
+}
+
+.currentCard {
+  --card-bg: color-mix(in oklab, var(--bg-color) 88%, black 12%);
+  background: var(--card-bg, rgba(0, 0, 0, 0.03));
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
+}
+
+.currentMain {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tempNow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.emoji {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.tempValue {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.unitSmall {
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+  opacity: 0.7;
+  vertical-align: super;
+}
+
+.meta {
+  display: grid;
+  gap: 0.25rem;
+}
+.meta strong {
+  font-size: 1.05rem;
+}
+.time {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Stats */
+.currentStats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.stat {
+  --stat-bg: color-mix(in oklab, var(--bg-color) 94%, black 6%);
+  background: var(--stat-bg, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.75rem 0.875rem;
+  display: grid;
+  gap: 0.25rem;
+}
+.statLabel {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.statValue small {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-left: 0.25rem;
+}
+.dim {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.dailySection {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.table thead {
+  background-color: var(--primary-color);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: var(--table-row-alt);
+}
+
+.table tbody tr:hover {
+  background-color: color-mix(
+    in oklab,
+    var(--table-row-alt) 70%,
+    var(--primary-color) 30%
+  );
+  transition: background-color 0.2s ease;
+}
+
+@media (max-width: 820px) {
+  .currentCard {
+    grid-template-columns: 1fr;
+  }
+  .currentMain {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 600px) {
+  .cityDetails {
+    padding: 0.5rem;
+  }
+  .cityDetails h1 {
+    font-size: 1.5rem;
+  }
+  .cityDetails h2 {
+    font-size: 1.25rem;
+  }
+  .emoji {
+    font-size: 2rem;
+  }
+  .tempValue {
+    font-size: 2rem;
+  }
+  .currentStats {
+    grid-template-columns: 1fr;
+  }
+  .table {
+    font-size: 0.875rem;
+  }
+  .table th,
+  .table td {
+    padding: 0.5rem 0.75rem;
+  }
+}

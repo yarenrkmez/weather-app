@@ -1,0 +1,58 @@
+{
+  "weather": {
+    "clear_sky": "Despejado",
+    "partly_cloudy": "Parcialmente nublado",
+    "cloudy": "Nublado",
+    "rainy": "Lluvioso",
+    "snow": "Nevado",
+    "unknown": "Desconocido",
+    "humidity": "Humedad",
+    "wind": "Viento",
+    "daily_forecast": "Pronóstico de 7 días",
+    "date": "Fecha",
+    "min_temp": "Mín °C",
+    "max_temp": "Máx °C",
+    "precipitation": "Precipitación (mm)",
+    "humidity_avg": "Humedad promedio (%)"
+  },
+  "unknown_city": "Desconocido",
+  "alerts": {
+    "city_already_added": "Esta ciudad ya ha sido añadida."
+  },
+  "placeholders": {
+    "enter_city_name": "Ingrese el nombre de la ciudad"
+  },
+  "aria": {
+    "city_name": "Nombre de la ciudad"
+  },
+  "buttons": {
+    "loading": "Cargando...",
+    "add": "Agregar",
+    "refresh": "Actualizar",
+    "remove": "Eliminar",
+    "toggle_details": "Mostrar/ocultar detalles",
+    "back": "Atrás"
+  },
+  "errors": {
+    "city_not_found": "Ciudad no encontrada.",
+    "fetch_error": "Error al obtener los datos del clima.",
+    "city_suggestions_failed": "Error al obtener sugerencias de ciudades.",
+    "location_denied": "Acceso a la ubicación denegado. Por favor, habilite los servicios de ubicación en la configuración de su navegador.",
+    "location_failed": "No se pudo recuperar la ubicación. Por favor, verifique la configuración de su navegador.",
+    "location_unsupported": "La geolocalización no es compatible con este navegador. Por favor, utilice un navegador moderno que soporte la API de geolocalización.",
+    "location_insecure": "La geolocalización requiere una conexión segura (HTTPS). Por favor, acceda al sitio a través de HTTPS.",
+    "location_unavailable": "La ubicación no está disponible. Por favor, asegúrese de que los servicios de ubicación estén habilitados en su dispositivo.",
+    "location_timeout": "La solicitud de ubicación ha expirado. Por favor, inténtelo de nuevo."
+  },
+  "messages": {
+    "no_city_added": "No se ha añadido ninguna ciudad. Por favor agregue una.",
+    "loading": "Cargando..."
+  },
+  "dashboard": {
+    "title": "Tablero del Clima"
+  },
+  "actions": {
+    "use_current_location": "Usar ubicación actual",
+    "use_current_location_loading": "Usando ubicación actual..."
+  }
+}

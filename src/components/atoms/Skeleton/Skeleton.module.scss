@@ -1,0 +1,27 @@
+.skeleton {
+  --sk-bg: color-mix(in oklab, var(--background-color) 90%, black 10%);
+  --sk-sh: color-mix(in oklab, var(--background-color) 70%, white 30%);
+  background: linear-gradient(
+    90deg,
+    var(--sk-bg) 0%,
+    var(--sk-sh) 50%,
+    var(--sk-bg) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

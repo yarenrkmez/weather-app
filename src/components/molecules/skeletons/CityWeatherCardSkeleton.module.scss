@@ -1,0 +1,66 @@
+.card {
+  min-height: 300px;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.25);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+}
+
+.actions {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.body {
+  display: grid;
+  gap: 10px;
+}
+
+.tempRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 64px;
+}
+
+.descRow {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+}
+
+.rangeRow {
+  display: flex;
+  justify-content: center;
+  min-height: 18px;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  min-height: 40px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 18px;
+}

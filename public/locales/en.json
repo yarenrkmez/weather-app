@@ -1,0 +1,58 @@
+{
+  "weather": {
+    "clear_sky": "Clear sky",
+    "partly_cloudy": "Partly cloudy",
+    "cloudy": "Cloudy",
+    "rainy": "Rainy",
+    "snow": "Snow",
+    "unknown": "Unknown",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "daily_forecast": "7-Day Forecast",
+    "date": "Date",
+    "min_temp": "Min °C",
+    "max_temp": "Max °C",
+    "precipitation": "Precipitation (mm)",
+    "humidity_avg": "Average Humidity (%)"
+  },
+  "unknown_city": "Unknown",
+  "alerts": {
+    "city_already_added": "This city is already added."
+  },
+  "placeholders": {
+    "enter_city_name": "Enter city name"
+  },
+  "aria": {
+    "city_name": "City name"
+  },
+  "buttons": {
+    "loading": "Loading...",
+    "add": "Add",
+    "refresh": "Refresh",
+    "remove": "Remove",
+    "toggle_details": "Toggle details",
+    "back": "Back"
+  },
+  "errors": {
+    "city_not_found": "City not found.",
+    "fetch_error": "Error fetching weather data.",
+    "city_suggestions_failed": "Error fetching city suggestions.",
+    "location_denied": "Location access denied. Please enable location services in your browser settings.",
+    "location_failed": "Failed to retrieve location. Please check your browser settings.",
+    "location_unsupported": "Geolocation is not supported by this browser. Please use a modern browser that supports the Geolocation API.",
+    "location_insecure": "Geolocation requires a secure connection (HTTPS). Please access the site via HTTPS.",
+    "location_unavailable": "Location is unavailable. Please ensure location services are enabled on your device.",
+    "location_timeout": "Location request timed out. Please try again."
+  },
+  "messages": {
+    "no_city_added": "No city added yet. Please add a city.",
+    "loading": "Loading..."
+  },
+  "dashboard": {
+    "title": "Weather Dashboard"
+  },
+  "actions": {
+    "use_current_location": "Use current location",
+    "use_current_location_loading": "Using current location..."
+  }
+}

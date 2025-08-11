@@ -1,46 +1,205 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React + TypeScript single-page application that shows current weather and a 7-day forecast using Open-Meteo. It supports debounced city search with suggestions, TR/EN localization, dark mode, skeletons, and client-side caching via React Query.
 
-## Available Scripts
+> **TL;DR**
+>
+> - **Dev:** `yarn install && yarn start`
+> - **Build:** `yarn build`
+> - **Test:** `yarn test`
+> - Add a city → see dashboard cards → go to details.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 🔎 Debounced city search with suggestions (Open-Meteo **Geocoding**)
+- 🌤️ Current weather + 7-day forecast (Open-Meteo **Forecast**)
+- 💾 Persistent city list (LocalStorage via context)
+- 🌐 i18n (TR/EN) with language detector
+- 🌙 Dark/Light theme toggle (Sass modules)
+- ♿ Accessible listbox (keyboard navigation)
+- ⚡ React Query v5 caching, error states & refetch
+- 🦴 Skeleton UIs for perceived performance
+- 🧪 Unit tests (Jest + Testing Library)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 🧱 Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React** + **TypeScript**
+- **React Router**
+- **@tanstack/react-query** v5
+- **i18next** (+ http-backend, language detector)
+- **Sass modules** (scoped styles)
+- **Create React App** (`react-scripts`, webpack)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📦 Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+  components/        # Atoms/Molecules/Skeletons
+  constants/         # WMO codes → UI map
+  contexts/          # CityWeather, Theme, Language
+  features/
+    addCity/         # AddCityForm + suggestions
+    dashboard/       # Weather cards + hooks
+  hooks/             # useLocalStorage, useInfiniteScroll
+  pages/             # Dashboard, CityDetails
+  services/          # open-meteo fetchers (geocoding/forecast)
+  utils/             # mapping helpers (WMO → text+emoji, units, humidity)
+  i18nForTests.ts    # in-memory i18n instance for tests
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🔌 APIs
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **Geocoding**  
+  `GET https://geocoding-api.open-meteo.com/v1/search?name=<city>&count=...&language=...`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Forecast**  
+  `GET https://api.open-meteo.com/v1/forecast?latitude=<lat>&longitude=<lon>&current_weather=1&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&hourly=relative_humidity_2m&timezone=auto`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> No API keys required.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## 🚀 Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# 1) Install deps
+yarn install   # or just: yarn
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 2) Start dev server
+yarn start
+
+# 3) Run tests (watch)
+yarn test
+
+# 4) Production build
+yarn build
+```
+
+**Environment**
+
+- Node ≥ 18 recommended
+- CRA (`react-scripts`)
+- TS `baseUrl=src`; path aliases under `compilerOptions.paths` (if used)
+
+---
+
+## 🧠 Architecture & Data Flow
+
+```
+AddCityForm
+  └─ CityWeatherContext (LocalStorage)
+       └─ Dashboard
+            └─ React Query useQueries([...cities])
+                 ├─ fetchCoordinatesByCity(name, { limit, language })
+                 └─ fetchCurrentWeatherByCoords(lat, lon, { daily, hourly, timezone=auto })
+                      ↳ mapWmo() / describeWeather() / pickCurrentHumidity()
+       └─ CityDetails
+            └─ useWeatherData({ latitude, longitude })  // raw Open-Meteo
+                 ↳ mapOpenMeteoToCard()                // current | current_weather compatible
+```
+
+**Why these choices?**
+
+- **Query key** includes language → switching locale triggers a refetch for user-visible text.
+- **Timezone correctness**: always request with `timezone=auto`; display time using `toLocale*` with the API’s `timezone` and `utc_offset_seconds`.
+- **Precipitation (mm)**: `daily.precipitation_sum` is included and the table header shows units.
+- **Humidity now**: nearest hour picked from `hourly.relative_humidity_2m`.
+
+---
+
+## 🧩 Important Types (UI contract)
+
+```ts
+// contexts/CityWeatherContext.tsx (UI store shape)
+export interface CityWeather {
+  id: string;
+  city: string;
+  temperature: number;
+  description: string;
+  icon?: string;
+  humidity: number;
+  windSpeed: number;
+  forecast?: {
+    time: string[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    precipitation_sum: number[];
+  };
+  latitude?: number;
+  longitude?: number;
+}
+```
+
+> Services convert `lat/lon` to `latitude/longitude` and normalize `current` vs `current_weather` for UI.
+
+---
+
+## 🌐 i18n & Timezone
+
+- Open-Meteo returns local timestamps + `utc_offset_seconds` when `timezone=auto`.
+- We append offset to ISO (`YYYY-MM-DDTHH:mm±HH:MM`) and format via `toLocaleString(i18n.language, { timeZone })`.
+- If you see wrong day/time: verify `timezone=auto` in the request and that your formatter uses `timezone` + `utc_offset_seconds`.
+
+---
+
+## 🧪 Testing Notes
+
+- Jest + Testing Library with in-memory i18n (`i18nForTests.ts`)
+- Mock `react-router-dom` and **React Query** responses.
+- **Tip:** React Query v5 returns flags like `isLoading/isFetching/isError/isSuccess`. When mocking `useQueries`, set them explicitly so components enter the right branch.
+
+**CityDetails header (humidity)**
+
+- Don’t hardcode TR copy. Prefer asserting the i18n value (or accept fallback):
+  ```ts
+  expect(screen.getByText(/Average Humidity|Ortalama Nem|humidity avg/i));
+  ```
+
+**Dashboard behavior**
+
+- Some variants call `updateCity(q.data)` on success. If your app does not, keep the test tolerant (check card render & actions; assert update only if called).
+
+Run once:
+
+```bash
+yarn test --watchAll=false
+```
+
+---
+
+## ⚙️ React Query Defaults
+
+```ts
+new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      gcTime: 30 * 60 * 1000,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+```
+
+---
+
+## ♿ Accessibility
+
+- Suggestions list uses `role="listbox"`/`role="option"`.
+- Manage keyboard focus (`aria-activedescendant`, `aria-selected`).
+- Icon-only buttons have accessible labels.
+
+---
+
+## 📄 License
+
+MIT
