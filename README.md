@@ -8,6 +8,7 @@ A React + TypeScript single-page application that shows current weather and a 7-
 > - **Build:** `yarn build`
 > - **Test:** `yarn test`
 > - Add a city → see dashboard cards → go to details.
+> - deploy: https://yarenrkmez.github.io/weather-app/
 
 ---
 
